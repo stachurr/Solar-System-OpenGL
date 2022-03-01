@@ -67,22 +67,22 @@ public:
 
 	// Default constructor (needed for SolarSystem)
 	Planet() {
-		this->name				= "Unnamed";
+		this->name		= "Unnamed";
 
-		this->axisTilt			= 0.0f;
+		this->axisTilt		= 0.0f;
 
-		this->orbitalPeriod		= 0.0f;
-		this->orbitalRadius		= 0.0f;
-		this->defaultRadius		= 0.0f;
+		this->orbitalPeriod	= 0.0f;
+		this->orbitalRadius	= 0.0f;
+		this->defaultRadius	= 0.0f;
 		this->adjustedRadius	= 0.0f;
-		this->nowRadius			= 0.0f;
+		this->nowRadius		= 0.0f;
 		this->rotationalPeriod	= 0.0f;
 
-		this->texture			= 0;
+		this->texture		= 0;
 
-		this->defaultDL			= 0;
-		this->adjustedDL		= 0;
-		this->nowDL				= 0;
+		this->defaultDL		= 0;
+		this->adjustedDL	= 0;
+		this->nowDL		= 0;
 	}
 
 	// Primary constructor, initialize with parameters
@@ -95,15 +95,15 @@ public:
 		EarthRatio rotationalPeriod,
 		char* texturePath
 	) {
-		this->name				= name;
+		this->name		= name;
 
-		this->axisTilt			= axisTilt;
+		this->axisTilt		= axisTilt;
 
-		this->orbitalPeriod		= (float)pow(orbitalRadius, 3.0 / 2.0);
-		this->orbitalRadius		= orbitalRadius * SCALE;
-		this->defaultRadius		= defaultRadius * SCALE;
+		this->orbitalPeriod	= (float)pow(orbitalRadius, 3.0 / 2.0);
+		this->orbitalRadius	= orbitalRadius * SCALE;
+		this->defaultRadius	= defaultRadius * SCALE;
 		this->adjustedRadius	= adjustedRadius * SCALE;
-		this->nowRadius			= this->adjustedRadius;
+		this->nowRadius		= this->adjustedRadius;
 		this->rotationalPeriod	= rotationalPeriod;
 
 		this->initTexture(texturePath);
@@ -113,23 +113,23 @@ public:
 
 	// change scale
 	void updatePlanetScale( bool adjusted ) {
-		this->nowDL		= adjusted ? this->adjustedDL : this->defaultDL;
+		this->nowDL	= adjusted ? this->adjustedDL : this->defaultDL;
 		this->nowRadius	= adjusted ? this->adjustedRadius : this->defaultRadius;
 	}
 };
 class SolarSystem {
 private:
-	static const int			NUM_BODIES						= 9;
-	static const int			ANIMATION_STEP					= 5000000;
-	static const int			ANIMATION_SPEED_MIN				= 100000;
-	static const int			ANIMATION_SPEED_MAX				= 100000000;
-	static const int			ANIMATION_SPEED_DEFAULT			= 10000000;
-	static constexpr float		SEC_PER_YEAR					= 31536000;
-	static constexpr float		EARTH_ROTATIONS_PER_YEAR		= 365.2422f;
-	static constexpr float		SPACING							= 5.0f * SCALE;
+	static const int	NUM_BODIES			= 9;
+	static const int	ANIMATION_STEP			= 5000000;
+	static const int	ANIMATION_SPEED_MIN		= 100000;
+	static const int	ANIMATION_SPEED_MAX		= 100000000;
+	static const int	ANIMATION_SPEED_DEFAULT		= 10000000;
+	static constexpr float	SEC_PER_YEAR			= 31536000;
+	static constexpr float	EARTH_ROTATIONS_PER_YEAR	= 365.2422f;
+	static constexpr float	SPACING				= 5.0f * SCALE;
 
 	// SUN, MERCURY, VENUS, EARTH, MARS, JUPITER, SATURN, URANUS, NEPTUNE
-	static constexpr EarthRatio	RADIUS[NUM_BODIES]				= {
+	static constexpr EarthRatio	RADIUS[NUM_BODIES] = {
 		25.0f,
 		0.1915f,
 		0.4745f,
@@ -140,7 +140,7 @@ private:
 		2.005f,
 		1.94f
 	};
-	static constexpr EarthRatio	RADIUS_ADJUSTED[NUM_BODIES]		= {
+	static constexpr EarthRatio	RADIUS_ADJUSTED[NUM_BODIES] = {
 		RADIUS[0],
 		RADIUS[1] * 10.0f,
 		RADIUS[2] * 6.0f,
@@ -151,7 +151,7 @@ private:
 		RADIUS[7] * 1.5f,
 		RADIUS[8] * 1.5f
 	};
-	static constexpr EarthRatio	ORBITAL_RADIUS[NUM_BODIES]		= {
+	static constexpr EarthRatio	ORBITAL_RADIUS[NUM_BODIES] = {
 		std::numeric_limits<float>::infinity(),
 		0.387f,
 		0.723f,
@@ -162,7 +162,7 @@ private:
 		19.20f,
 		30.05f
 	};
-	static constexpr EarthRatio	ROTATIONAL_PERIOD[NUM_BODIES]	= {
+	static constexpr EarthRatio	ROTATIONAL_PERIOD[NUM_BODIES] = {
 		std::numeric_limits<float>::infinity(),
 		58.8f,
 		-244.0f,
@@ -173,7 +173,7 @@ private:
 		-0.720f,
 		0.673f
 	};
-	static constexpr float		AXIS_TILT[NUM_BODIES]			= {
+	static constexpr float		AXIS_TILT[NUM_BODIES] = {
 		7.25f,
 		0.01f,
 		177.40f,
@@ -184,7 +184,7 @@ private:
 		97.77f,
 		28.32f
 	};
-	static constexpr char*		BMP_PATHS[NUM_BODIES]			= {
+	static constexpr char*		BMP_PATHS[NUM_BODIES] = {
 		"images/2k_sun.bmp",
 		"images/2k_mercury.bmp",
 		"images/2k_venus.bmp",
@@ -195,7 +195,7 @@ private:
 		"images/2k_uranus.bmp",
 		"images/2k_neptune.bmp"
 	};
-	static constexpr char*		NAME[NUM_BODIES]				= {
+	static constexpr char*		NAME[NUM_BODIES] = {
 		"Sol",
 		"Mercury",
 		"Venus",
@@ -214,9 +214,9 @@ private:
 
 	// create display lists
 	void initButtonDisplayList() {
-		float x			= 18;
-		float y			= 99;
-		float width		= 2;
+		float x		= 18;
+		float y		= 99;
+		float width	= 2;
 		float height	= 4;
 
 		this->animationSpeedButtonsDL = glGenLists( 1 );
@@ -255,8 +255,8 @@ private:
 	}
 
 	// creates the sun and planets object instances
-	// NOTE*: to be called after the graphics are initialized (so textures
-	//	can be applied to bodies) and after Reset() is called
+	// NOTE*:	to be called after the graphics are initialized (so textures
+	//		can be applied to bodies) and after Reset() is called
 	void initBodies() {
 		for (int i = 0; i < NUM_BODIES; i++)
 			this->bodies[i] = Planet(
@@ -285,19 +285,19 @@ public:
 	DisplayList	getAnimationSpeedButtonsDL() {
 		return this->animationSpeedButtonsDL;
 	}
-	Planet		getPlanet(int index) {
+	Planet	getPlanet(int index) {
 		return this->bodies[index];
 	}
-	int			getAnimationSpeed() {
+	int	getAnimationSpeed() {
 		return this->animationSpeed;
 	}
-	float		getEarthYearCount() {
+	float	getEarthYearCount() {
 		return this->earthYearCount;
 	}
-	float		getEarthDayCount() {
+	float	getEarthDayCount() {
 		return this->earthDayCount;
 	}
-	float		getEarthOrbitDuration() {
+	float	getEarthOrbitDuration() {
 		return this->earthOrbitDuration;
 	}
 
@@ -340,7 +340,7 @@ public:
 
 	// draws the solar system
 	void draw(float Time) {
-		float dx		= -this->getPlanet(0).nowRadius;
+		float dx	= -this->getPlanet(0).nowRadius;
 		earthYearCount	= Time / earthOrbitDuration;
 		earthDayCount	= earthYearCount * EARTH_ROTATIONS_PER_YEAR;
 
@@ -371,9 +371,9 @@ public:
 		// draw each body
 		dx = -this->getPlanet(0).nowRadius;
 		for (int i = 0; i < NUM_BODIES; i++) {
-			Planet currentBody		= this->bodies[i];
-			float orbitAngleRad		= degToRad( fmod360( earthYearCount * 360 / currentBody.orbitalPeriod ) );
-			float rotationAngleDeg	=			fmod360( earthDayCount * 360 / currentBody.rotationalPeriod );
+			Planet currentBody	= this->bodies[i];
+			float orbitAngleRad	= degToRad(	fmod360( earthYearCount * 360 / currentBody.orbitalPeriod ) );
+			float rotationAngleDeg	= 		fmod360( earthDayCount * 360 / currentBody.rotationalPeriod );
 
 			// bind current body's texture
 			glBindTexture(GL_TEXTURE_2D, currentBody.texture);
@@ -381,10 +381,10 @@ public:
 			// draw current planet
 			glPushMatrix();
 				float distanceFromSun	= dx + currentBody.nowRadius;
-				float x					= distanceFromSun * (float)cos(orbitAngleRad);
-				float z					= distanceFromSun * (float)sin(orbitAngleRad);
+				float x			= distanceFromSun * (float)cos(orbitAngleRad);
+				float z			= distanceFromSun * (float)sin(orbitAngleRad);
 
-				glTranslatef(x, 0, -z);						// orbit
+				glTranslatef(x, 0, -z);				// orbit
 				glRotatef(currentBody.axisTilt, 1, 0, 0);	// axis tilt
 				glRotatef(rotationAngleDeg, 0, 1, 0);		// rotation
 
