@@ -6,7 +6,7 @@ A (mostly) scale model of the Solar System in [OpenGL](https://www.opengl.org/).
 
 # Scale
 The following is a list of properties that have been kept to-scale. You will notice that "Distance from Sun" is not on this list. This is because the distances are so large, the size of the planets would be less than a pixel if scaled properly.
-  - Sizes (exluding the sun)
+  - Sizes (toggleable) ...exluding the sun
   - Orbital Periods
   - Axial Tilts
   - Rotation Periods
